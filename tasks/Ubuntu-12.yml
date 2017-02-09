@@ -11,11 +11,10 @@
     dest: /opt
 
 - name: Ubuntu-12 | add the bin directory to the PATH environment variable system wide
-  blockinfile:
-    dest: /etc/profile.d/apache-maven.sh
+  lineinfile:
+    dest: /etc/profile
+    line: "export PATH=/opt/apache-maven-{{ apache_maven_version }}/bin:$PATH"
     create: yes
     owner: root
     group: root
     mode: 0755
-    block: |
-      export PATH=/opt/apache-maven-{{ apache_maven_version }}/bin:$PATH
