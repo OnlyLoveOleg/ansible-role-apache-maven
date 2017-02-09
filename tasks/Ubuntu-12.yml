@@ -1,0 +1,21 @@
+---
+- name: Ubuntu-12 | download apache-maven
+  get_url:
+    url: http://apache.mirror.gtcomm.net/maven/maven-3/{{ apache_maven_version }}/binaries/apache-maven-{{ apache_maven_version }}-bin.zip
+    dest: /opt/apache-maven-{{ apache_maven_version }}-bin.zip
+    checksum: md5:{{ apache_maven_src_file_md5 }}
+
+- name: Ubuntu-12 | unarchive downloaded file
+  unarchive:
+    src: /opt/apache-maven-{{ apache_maven_version }}-bin.zip
+    dest: /opt
+
+- name: Ubuntu-12 | add the bin directory to the PATH environment variable system wide
+  blockinfile:
+    dest: /etc/profile.d/apache-maven.sh
+    create: yes
+    owner: root
+    group: root
+    mode: 0755
+    block: |
+      export PATH=/opt/apache-maven-{{ apache_maven_version }}/bin:$PATH

@@ -1,2 +1,3 @@
 ---
-# defaults file for ansible-role-apache-maven
+apache_maven_version: 3.3.9
+apache_maven_src_file_md5: e7ebd0b8d6811b42a5dad91fb27fe9b4
